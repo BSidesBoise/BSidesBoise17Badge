@@ -53,8 +53,8 @@ Wire the NodeMCU to the TCL5940 LED driver as follows:
 
 | NodeMCU Pin | ESP8266 Pin | TLC5940 Pin |
 |-------------|-------------|-------------|
-| D10         | GPIO1       | 26 (SIN)    |
-| D9          | GPIO3       | 25 (SCLK)   |
+| Tx          | GPIO1       | 26 (SIN)    |
+| Rx          | GPIO3       | 25 (SCLK)   |
 | D8          | GPIO15      | 24 (XLAT)   |
 | D7          | GPIO13      | 23 (BLANK)  |
 | D6          | GPIO12      | 18 (GSCLK)  |
