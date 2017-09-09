@@ -7,15 +7,16 @@ The NodeMCU is powered off USB (at least for the POC) or by the Vin 5v input
 pin. Below is a simple diagram of the NodeMCU module and its pins which are
 described in more detail in the tables following.
 
-Key:
-N/C  = Not Connected
-GND  = Ground
-5v   = 5 Volt power input from battery
-3.3v = 3.3 Volt power output to peripheral power rails.
-BTN  = Input pins connected to a user button (See button section below)
-SRN  = Output pins connected to OLED screen. (See OLED Screen section below)
-TLC  = Output pins connected to the LED Driver (See TLC5940 LED section below)
+### Key:
+* N/C  = Not Connected
+* GND  = Ground
+* 5v   = 5 Volt power input from battery
+* 3.3v = 3.3 Volt power output to peripheral power rails.
+* BTN  = Input pins connected to a user button (See button section below)
+* SRN  = Output pins connected to OLED screen. (See OLED Screen section below)
+* TLC  = Output pins connected to the LED Driver (See TLC5940 LED section below)
 
+<pre>
         ------------
 N/C  <- | A0    D0 | -> N/C
 GND  <- | G     D1 | -> BTN
@@ -33,6 +34,7 @@ N/C  <- | RST   TX | -> TLC
 GND  <- | G      G | -> GND
 5v   <- | VIN   3V | -> 3.3v
         ------------
+</pre>
 
 ### OLED Screen
 
