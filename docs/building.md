@@ -63,21 +63,21 @@ Wire the TLC5940 to LED's as follows:
 
 | TLC5940 | LED |
 |---------|-----|
-|1 (OUT1) | 0 R |
+|1 (OUT1) | 0 B |
 |2 (OUT2) | 0 G |
-|3 (OUT3) | 0 B |
-|4 (OUT4) | 1 R |
+|3 (OUT3) | 0 R |
+|4 (OUT4) | 1 B |
 |5 (OUT5) | 1 G |
-|6 (OUT6) | 1 B |
-|7 (OUT7) | 2 R |
+|6 (OUT6) | 1 R |
+|7 (OUT7) | 2 B |
 |8 (OUT8) | 2 G |
-|9 (OUT9) | 2 B |
-|10(OUT10)| 3 R |
+|9 (OUT9) | 2 R |
+|10(OUT10)| 3 B |
 |11(OUT11)| 3 G |
-|12(OUT12)| 3 B |
-|13(OUT13)| 4 R |
+|12(OUT12)| 3 R |
+|13(OUT13)| 4 B |
 |14(OUT14)| 4 G |
-|15(OUT15)| 4 B |
+|15(OUT15)| 4 R |
 
 Wire the remaining TLC5940 pins as follows (N/C == Not Connected). Pins that are
 described in earlier sections are omitted from this table.
