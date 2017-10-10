@@ -12,8 +12,11 @@
 #define MAXLED 50
 #define MINLED 1023
 
-// GPIO pin that's not defined elsewhere by Arduino
-#define S3 9
+// GPIO pin that's not defined elsewhere by Arduino:
+#define S3 9 //For LOLIN clone due to bug
+//#define S3 10 //For legitimate NodeMCU
+#define RX 3
+#define TX 1
 
 /*******************************************************************************
  * Object that abstracts a single LED Pin
@@ -179,8 +182,8 @@ Led_pin BLGREEN(D6, MINLED, MAXLED, MINLED);
 Led_pin BLBLUE(D7, MINLED, MAXLED, MINLED);
 
 Led_pin BRRED(D8, MINLED, MAXRED, MINLED);
-Led_pin BRGREEN(D9, MINLED, MAXLED, MINLED);
-Led_pin BRBLUE(D10, MINLED, MAXLED, MINLED);
+Led_pin BRGREEN(RX, MINLED, MAXLED, MINLED);
+Led_pin BRBLUE(TX, MINLED, MAXLED, MINLED);
 
 Led TOP_LEFT(TLRED, TLGREEN, TLBLUE);
 Led TOP_RIGHT(TRRED, TRGREEN, TRBLUE);
