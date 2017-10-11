@@ -9,7 +9,7 @@ http://www.esp8266.com/wiki/doku.php?id=nodemcu-unofficial-faq
 
 LEDs
 ----
-The LED's require a smaller voltage than our output pins deliver. In order to 
+The LED's require less voltage than our output pins deliver. In order to 
 reduce voltage, we'll use PWM.
 
 Patterns
