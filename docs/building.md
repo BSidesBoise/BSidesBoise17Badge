@@ -36,7 +36,14 @@ GND  <- | G      G | -> GND
         ------------
 </pre>
 
-For laying wiring the boards, please refer to the wiring diagram image: https://gitlab.com/BSidesBoise/BSides_2017_Badge/blob/master/docs/Reference_Wiring_Picture.jpg
+For laying wiring the boards, please refer to the wiring diagram images:
+
+https://gitlab.com/BSidesBoise/BSides_2017_Badge/blob/master/docs/Wiring_Reference_1.jpg
+
+https://gitlab.com/BSidesBoise/BSides_2017_Badge/blob/master/docs/Wiring_Reference_2.jpg
+
+https://gitlab.com/BSidesBoise/BSides_2017_Badge/blob/master/docs/Wiring_Reference_3.jpg
+
 
 PLEASE READ AND FOLLOW THE FOLLOWING INSTRUCTIONS CAREFULLY:
 
