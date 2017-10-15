@@ -60,6 +60,8 @@ PLEASE READ AND FOLLOW THE FOLLOWING INSTRUCTIONS CAREFULLY:
 
 10) Please check out Justin's branch of code, and compile it for your device (making sure to comment/uncomment the S3 line that is correct for if you have a legit NodeMCU or a Lolin clone), then test each finished board to make sure it lights up correctly.
 
+11) For the most part, the LEDs should be placed at the far extent of the board. The bottom two should be one row up, to make room for the common line connecting the rails on both sides of the board.
+
 
 Here is the table of wiring directions which will help you, in conjunction with the above image:
 
