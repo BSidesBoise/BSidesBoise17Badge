@@ -1,11 +1,12 @@
 Building the POC
 ================
 
-Building the hardware & pinouts
+Building the hardware & pin outs
 -------------------------------
-The NodeMCU is powered off USB (at least for the POC) or by the Vin 5v input 
-pin. Below is a simple diagram of the NodeMCU module and its pins which are
-described in more detail in the tables following.
+The NodeMCU can be powered off USB or by battery via the Vin 5v input pin. 
+__It's crucial__ that only one power source is connected at a time to prevent 
+hardware damage.Below is a simple diagram of the NodeMCU module and its pins 
+which are described in more detail in the tables following.
 
 ### Key:
 * N/C  = Not Connected
@@ -35,7 +36,6 @@ GND  <- | G      G | -> GND
 </pre>
 
 ### LEDs
-
 The following LED's are abbreviated as top or bottom, followed by left or right, 
 then the color. For example, TLR would mean "Top Left Red".
 
@@ -58,8 +58,6 @@ Wire the NodeMCU to the LEDs as follows:
 
 Building the firmware
 ---------------------
-NOT COMPLETE YET
-
 The POC is built using the Arduino IDE using the ESP8266 board libraries.
 Docs are located [here.](https://arduino-esp8266.readthedocs.io/en/latest/)
 
@@ -74,6 +72,7 @@ Docs are located [here.](https://arduino-esp8266.readthedocs.io/en/latest/)
 1. Select the correct board
     * Select tools -> Board -> NodeMCU 1.0
 1. Upload the firmware
+    * Open the [firmware](../firmware/LEDs/LEDs.ino) file using the Arduino IDE
     * Select the "Upload" button to compile and upload the firmware to the 
       NodeMCU
     * Note that the LED connected to D8 (Bottom Right) must be removed prior to
