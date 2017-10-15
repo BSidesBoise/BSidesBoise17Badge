@@ -36,100 +36,38 @@ GND  <- | G      G | -> GND
         ------------
 </pre>
 
-### OLED Screen
+For laying wiring the boards, please refer to the wiring diagram image: https://gitlab.com/BSidesBoise/BSides_2017_Badge/blob/master/docs/Reference_Wiring_Picture.jpg
 
-Wire the NodeMCU to the OLED screen as follows:
+PLEASE READ AND FOLLOW THE FOLLOWING INSTRUCTIONS CAREFULLY:
 
-| NodeMCU Pin | ESP8266 Pin | OLED Pin |
-|-------------|-------------|----------|
-| 3.3v        | 3.3v (any)  | Vdd      |
-| GND         | GND         | GND      |
-| D3          | GPIO0/Flash | SDA      |
-| D5          | GPIO14/HSCLK| SCL      |
+1) The board is orientated so that the row numbers go from 1 at the top to 30 at the bottom.
+2) The "top" of the NodeMCU is the side with the ESP8266 chip.
+3) The NodeMCU shall be placed with the first pin at the top of the board, on the #9 row of the protoboard.
+4) You MUST ensure that all wires leave the "a", "b", "i", and "j" columns of the protoboard empty so as to accomodate both the legit NodeMCU's and the Lolin clones.
+5) You MUST ensure that the red LED pin is always the bottom-most (as referenced to the protoboard) pin of the three colors.  This means two of the LEDs on the right, will be in mirror orientation to the two on the left to keep the red LED pointed down.
+6) You should clip your LED pins so that the LED will bump up against, or nearly bump up against the top of the project box, when inserted. This will ensure that the LEDs don't work their way out (they will naturally want walk out of the board due to the springy nature of their pins).
+7) The referense wiring diagram image contains one small error, the diode should have the left-most pin, in the farthest out rail, instead of one in like it is currently oriented.
+8) Please make sure you get the orientation of your diode correct (see above picture)
+9) Please hook up the common cathode rail of the LEDs as per the image so that they are all commoned to one GND line on the left side of the board.
+10) Please check out Justin's branch of code, and compile it for your device (making sure to comment/uncomment the S3 line that is correct for if you have a legit NodeMCU or a Lolin clone), then test each finished board to make sure it lights up correctly.
 
-### TLC5940 LED Driver
+Here is the table of wiring directions which will help you, in conjunction with the above image:
 
-Wire the NodeMCU to the TCL5940 LED driver as follows:
+LED Position | NodeMCU Pin | Protoboard Row | LED Color 
+-------------|-------------|----------------|----------
+TL           | S3 (SD3)    | 12             | R
+TL           | D0          | 9              | G
+TL           | D1          | 10             | B
+TR           | D2          | 11             | R
+TR           | D3          | 12             | G
+TR           | D4          | 13             | B
+BL           | D5          | 16             | R
+BL           | D6          | 17             | G
+BL           | D7          | 18             | B
+BR           | D8          | 19             | R
+BR           | RX          | 20             | G
+BR           | TX          | 21             | B
 
-| NodeMCU Pin | ESP8266 Pin | TLC5940 Pin |
-|-------------|-------------|-------------|
-| Tx          | GPIO1       | 26 (SIN)    |
-| Rx          | GPIO3       | 25 (SCLK)   |
-| D8          | GPIO15      | 24 (XLAT)   |
-| D7          | GPIO13      | 23 (BLANK)  |
-| D6          | GPIO12      | 18 (GSCLK)  |
+As you complete wiring of boards, please update this spreadsheet: https://docs.google.com/spreadsheets/d/1iOaclNGcpSUEgD6lBblX5JUO6b4hM3gnfDJPsdBYcac/edit?usp=sharing
 
-Wire the TLC5940 to LED's as follows:
 
-| TLC5940 | LED |
-|---------|-----|
-|1 (OUT1) | 0 B |
-|2 (OUT2) | 0 G |
-|3 (OUT3) | 0 R |
-|4 (OUT4) | 1 B |
-|5 (OUT5) | 1 G |
-|6 (OUT6) | 1 R |
-|7 (OUT7) | 2 B |
-|8 (OUT8) | 2 G |
-|9 (OUT9) | 2 R |
-|10(OUT10)| 3 B |
-|11(OUT11)| 3 G |
-|12(OUT12)| 3 R |
-|13(OUT13)| 4 B |
-|14(OUT14)| 4 G |
-|15(OUT15)| 4 R |
-
-Wire the remaining TLC5940 pins as follows (N/C == Not Connected). Pins that are
-described in earlier sections are omitted from this table.
-
-| TLC5940 | PWR/GND |
-|---------|---------|
-|16(XERR) | N/C     |
-|17(SOUT) | N/C     |
-|19(DCPRG)| 3.3v    |
-|20(IREF) | 2k->GND | <- Determines current through all LED's. See note below.
-|21(VCC)  | 3.3v    |
-|22(GND)  | GND     |
-|27(VPRG) | GND     |
-|28(OUT0) | N/C     |
-
-Note for IREF:
-The IREF resistor value is what determines how much current is pumped through
-all LED's connected to the TLC5940 when running at maximum. To set this value, 
-follow the formula:
-I =  (1.24/R)*31.5
-where I is the max current through the LED's and R is the resistor value set. 
-For example, if R == 2k, we'd get a max current of 19.53mA.
-
-### Input Buttons
-
-The badge will have 5 input buttons. Each button shall utilize the internal
-pull-up resistors within the NodeMCU, so the following GPIO's should be 
-connected to one side of the buttons, with the other side connected to ground.
-
-| NodeMCU Pin | ESP8266 Pin |
-|-------------|-------------|
-| D1          | GPIO5       |
-| D2          | GPIO4       |
-| D4          | GPIO2       |
-| S3          | GPIO10      |
-| S2          | GPIO9       |
-
-Building the firmware
----------------------
-NOT COMPLETE YET
-
-The POC is built using the Arduino IDE using the ESP8266 board libraries.
-Docs are located [here.](https://arduino-esp8266.readthedocs.io/en/latest/)
-
-1. Start the Arduino IDE (1.8.4 was used at the time of this writing)
-1. Configure the sketchbook for the poc folder. 
-    * Select File -> Preferences -> settings tab and change the "Sketchbook 
-    location" to this poc folder.
-1. Add the ESP8266 board
-    * Select File -> Preferences -> settings tab and in the "Additional Boards
-    Manager URLs" add 
-    `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
-1. Select the correct board
-    * Select tools -> Board -> NodeMCU 1.0
-1. 
