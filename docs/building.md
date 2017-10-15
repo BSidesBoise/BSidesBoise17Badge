@@ -59,15 +59,13 @@ PLEASE READ AND FOLLOW THE FOLLOWING INSTRUCTIONS CAREFULLY:
 
 6) You should clip your LED pins so that the LED will bump up against, or nearly bump up against the top of the project box, when inserted. This will ensure that the LEDs don't work their way out (they will naturally want walk out of the board due to the springy nature of their pins).
 
-7) The referense wiring diagram image contains one small error, the diode should have the left-most pin, in the farthest out rail, instead of one in like it is currently oriented.
+7) Please make sure you get the orientation of your diode correct (see above picture)
 
-8) Please make sure you get the orientation of your diode correct (see above picture)
+8) Please hook up the common cathode rail of the LEDs as per the image so that they are all commoned to one GND line on the left side of the board.
 
-9) Please hook up the common cathode rail of the LEDs as per the image so that they are all commoned to one GND line on the left side of the board.
+9) Please check out Justin's branch of code, and compile it for your device (making sure to comment/uncomment the S3 line that is correct for if you have a legit NodeMCU or a Lolin clone), then test each finished board to make sure it lights up correctly.
 
-10) Please check out Justin's branch of code, and compile it for your device (making sure to comment/uncomment the S3 line that is correct for if you have a legit NodeMCU or a Lolin clone), then test each finished board to make sure it lights up correctly.
-
-11) For the most part, the LEDs should be placed at the far extent of the board. The bottom two should be one row up, to make room for the common line connecting the rails on both sides of the board.
+10) For the most part, the LEDs should be placed at the far extent of the board. The bottom two should be one row up, to make room for the common line connecting the rails on both sides of the board.
 
 
 Here is the table of wiring directions which will help you, in conjunction with the above image:
