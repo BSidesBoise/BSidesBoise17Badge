@@ -9,13 +9,17 @@
  * Constants used throughout this sketch
  ******************************************************************************/
 // Constants defining PWM min/max values
-#define MAXRED 350
-#define MAXLED 50
-#define MINLED 1023
+//#define MAXRED 350
+//#define MAXLED 50
+//#define MINLED 1023
+
+#define MAXRED 674
+#define MAXLED 974
+#define MINLED 0
 
 // GPIO pin that's not defined elsewhere by Arduino:
-#define S3 9 //For LOLIN clone due to bug
-//#define S3 10 //For legitimate NodeMCU
+//#define S3 9 //For LOLIN clone due to bug
+#define S3 10 //For legitimate NodeMCU
 #define RX 3
 #define TX 1
 
@@ -61,12 +65,12 @@ public:
         uint16_t pwm_value = map(percent_value, 0, 100, m_min_brightness,
                                  m_max_brightness);
 
-        if (pwm_value >= m_min_brightness)
+        if (pwm_value < m_min_brightness)
         {
             // The user tried to set the brightness above the minimum, clamp it
             m_brightness = m_min_brightness;
         }
-        else if (pwm_value <= m_max_brightness)
+        else if (pwm_value > m_max_brightness)
         {
             // The user tried to set the brightness below the maximum, clamp it
             m_brightness = m_max_brightness;
