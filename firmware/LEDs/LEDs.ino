@@ -125,11 +125,11 @@ public:
                     // Top Right Blue
                     Led_pin(D4, MINLED, MAXLED, MINLED),
                     // Bottom Left Red
-                    Led_pin(D5, MINLED, MAXRED, MINLED),
+                    Led_pin(D7, MINLED, MAXRED, MINLED),
                     // Bottom Left Green
                     Led_pin(D6, MINLED, MAXLED, MINLED),
                     // Bottom Left Blue
-                    Led_pin(D7, MINLED, MAXLED, MINLED),
+                    Led_pin(D5, MINLED, MAXLED, MINLED),
                     // Bottom Right Red
                     Led_pin(D8, MINLED, MAXRED, MINLED),
                     // Bottom Right Green
