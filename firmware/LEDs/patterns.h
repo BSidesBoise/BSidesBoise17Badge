@@ -183,7 +183,12 @@ Moment chase_rgb[] =
                 }
         };
 
-
+Moment turn_off[] =
+{
+        {   //off
+            {0, 0, 0,       0, 0, 0,        0, 0, 0,        0, 0, 0         }, 2, 25
+        }
+};
 
 
 Moment pulse_bang[] =

@@ -309,6 +309,7 @@ void loop()
     for(int i = 0; i < 1; i++){
         ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
     }
+    ZE_LEDS.draw(turn_off, sizeof(turn_off)/ sizeof(*turn_off));
     delay(2000);
     
     // attendee_glow - GREEN
