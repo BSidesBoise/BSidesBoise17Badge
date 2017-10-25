@@ -287,57 +287,45 @@ void loop_Patterns(){
     };
 }
 
-void set_mode(Moment *m, int loop_count){    
-    for(int i = 0; i < loop_count; i++){
-        //TODO There is a problem here fades Up to the color but does not dim down
-        //ZE_LEDS.draw(m, sizeof(m)/ sizeof(m));
-        
-        // This does not work. no idea why some type of mem pointer issue...
-        //ZE_LEDS.draw(m, sizeof(m)/ sizeof(*m));
-
-        // Very strange behavior when i do this
-        //ZE_LEDS.draw(m, sizeof(*m)/ sizeof(*m));
-    };    
-}
 
 void loop()
 {
     //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
-    //Moment moments[] = { chase_rgb, roy_g_biv, chase_red, chase_green, chase_blue, pulse_bang };
-
     
+    // criss_cross pattern on power on 
+    // Followed by Member Mode
+    // Followed by loop custom patterns  
     for(int i = 0; i < 1; i++){
         ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
     }
     ZE_LEDS.draw(turn_off, sizeof(turn_off)/ sizeof(*turn_off));
-    delay(2000);
+    delay(1000);
+    
+    // This doesnt work
+    //Moment m = attendee_glow;   // Green
+    //Moment m = speaker_glow;    // Blue
+    //Moment m = staff_glow;      // Red 
     
     // attendee_glow - GREEN
-    //set_mode(attendee_glow, 4);
-    // speaker_glow BLUE
-    //set_mode(speaker_glow, 4);
-    // staff_glow RED
-    //set_mode(staff_glow, 4);   
-    
-    
-    // attendee_glow - GREEN
+    /*
     for(int i = 0; i < 10; i++){
         ZE_LEDS.draw(attendee_glow, sizeof(attendee_glow)/ sizeof(*attendee_glow));
-    };
+    };*/
     
-    /*
+    
     // speaker_glow BLUE
+    /*
     for(int i = 0; i < 10; i++){
         ZE_LEDS.draw(speaker_glow, sizeof(speaker_glow)/ sizeof(*speaker_glow));
     };*/
 
-    /*
+    
     // staff_glow RED
     for(int i = 0; i < 10; i++){
         ZE_LEDS.draw(staff_glow, sizeof(staff_glow)/ sizeof(*staff_glow));
-    };*/   
-
+    };   
+    
     loop_Patterns();
 
-    delay(2000);
+    delay(1000);
 }

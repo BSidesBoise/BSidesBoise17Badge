@@ -32,7 +32,7 @@ struct Moment
     uint16_t delay_time;
 };
 
-// Member glow patterns
+// Member glow Moment(s)
 // attendee_glow GREEN
 Moment attendee_glow[] =
 {
@@ -63,6 +63,7 @@ Moment staff_glow[] =
                 { 10, 0, 0,    10, 0, 0,     10, 0, 0,      10, 0, 0      }, 20, 100
         }
 };
+// End Memebr Moment(s)
 
 // Single color chase Moment(s)
 Moment chase_red[] =
