@@ -251,57 +251,73 @@ int get_random(int min, int max)
 {
     return random(min,max);
 }
+
+void loop_Patterns(){
+    // random loop Moment chase_rgb
+    for(int i = 0; i < get_random(4,10); i++){
+        ZE_LEDS.draw(chase_rgb, sizeof(chase_rgb)/ sizeof(*chase_rgb));
+    }
+
+    // Moment roy_g_biv
+        ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
+
+    // random loop Moment chase_red
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_red, sizeof(chase_red)/ sizeof(*chase_red));
+    }    
+
+    // random loop Moment chase_green
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_green, sizeof(chase_green)/ sizeof(*chase_green));
+    }    
+
+    // random loop Moment chase_blue
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_blue, sizeof(chase_blue)/ sizeof(*chase_blue));
+    }
+
+    // random loop Moment chase_white
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_white, sizeof(chase_white)/ sizeof(*chase_white));
+    }
+
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
+    }
+
+    // Moment roy_g_biv
+    ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
+
+    // random loop Moment pulse_bang
+    for(int i = 0; i < get_random(1,6); i++){
+        ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
+    };
+}
+
 void loop()
 {
     //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
     //Moment moments[] = { chase_rgb, roy_g_biv, chase_red, chase_green, chase_blue, pulse_bang };
     
-    // random loop Moment chase_rgb
-    for(int i = 0; i < get_random(4,10); i++)
-    {
-        ZE_LEDS.draw(chase_rgb, sizeof(chase_rgb)/ sizeof(*chase_rgb));
-    }
+    
+    // attendee_glow - GREEN
+    for(int i = 0; i < 10; i++){
+        ZE_LEDS.draw(attendee_glow, sizeof(attendee_glow)/ sizeof(*attendee_glow));
+    };
+    
+    /*
+    // speaker_glow BLUE
+    for(int i = 0; i < 10; i++){
+        ZE_LEDS.draw(speaker_glow, sizeof(speaker_glow)/ sizeof(*speaker_glow));
+    };*/
 
-    // Moment roy_g_biv
-    ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
-    
-    // random loop Moment chase_red
-    for(int i = 0; i < get_random(0,8); i++)
-    {
-      ZE_LEDS.draw(chase_red, sizeof(chase_red)/ sizeof(*chase_red));
-    }    
-    
-    // random loop Moment chase_green
-    for(int i = 0; i < get_random(0,8); i++)
-    {
-      ZE_LEDS.draw(chase_green, sizeof(chase_green)/ sizeof(*chase_green));
-    }    
-    
-    // random loop Moment chase_blue
-    for(int i = 0; i < get_random(0,8); i++)
-    {
-      ZE_LEDS.draw(chase_blue, sizeof(chase_blue)/ sizeof(*chase_blue));
-    }
-    
-    // random loop Moment chase_white
-    for(int i = 0; i < get_random(0,8); i++)
-    {
-      ZE_LEDS.draw(chase_white, sizeof(chase_white)/ sizeof(*chase_white));
-    }
-    
-    for(int i = 0; i < get_random(0,8); i++)
-    {
-      ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
-    }
+    /*
+    // staff_glow RED
+    for(int i = 0; i < 10; i++){
+        ZE_LEDS.draw(staff_glow, sizeof(staff_glow)/ sizeof(*staff_glow));
+    };*/   
 
-    // Moment roy_g_biv
-    ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
-    
-    // random loop Moment pulse_bang
-    for(int i = 0; i < get_random(1,6); i++)
-    {
-      ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
-    }
-    
+    loop_Patterns();
+
     //delay(1000);
 }
