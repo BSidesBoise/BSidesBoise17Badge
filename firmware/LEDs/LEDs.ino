@@ -17,13 +17,13 @@
 //#define MAXLED 974
 //#define MINLED 0
 
-#define MAXRED 374
-#define MAXLED 487
+#define MAXRED 174
+#define MAXLED 287
 #define MINLED 0
 
 // GPIO pin that's not defined elsewhere by Arduino:
-//#define S3 9 //For LOLIN clone due to bug
-#define S3 10 //For legitimate NodeMCU
+#define S3 9 //For LOLIN clone due to bug
+//#define S3 10 //For legitimate NodeMCU
 #define RX 3
 #define TX 1
 
@@ -280,24 +280,43 @@ void loop_Patterns(){
     for(int i = 0; i < get_random(0,8); i++){
         ZE_LEDS.draw(chase_white, sizeof(chase_white)/ sizeof(*chase_white));
     }
-
-    for(int i = 0; i < get_random(0,8); i++){
-        ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
-    }
-
-    // Moment roy_g_biv
-    ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
-
+    
     // random loop Moment pulse_bang
     for(int i = 0; i < get_random(1,6); i++){
         ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
     };
 }
 
+void set_mode(Moment *m, int loop_count){    
+    for(int i = 0; i < loop_count; i++){
+        //TODO There is a problem here fades Up to the color but does not dim down
+        //ZE_LEDS.draw(m, sizeof(m)/ sizeof(m));
+        
+        // This does not work. no idea why some type of mem pointer issue...
+        //ZE_LEDS.draw(m, sizeof(m)/ sizeof(*m));
+
+        // Very strange behavior when i do this
+        //ZE_LEDS.draw(m, sizeof(*m)/ sizeof(*m));
+    };    
+}
+
 void loop()
 {
     //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
     //Moment moments[] = { chase_rgb, roy_g_biv, chase_red, chase_green, chase_blue, pulse_bang };
+
+    
+    for(int i = 0; i < 1; i++){
+        ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
+    }
+    delay(2000);
+    
+    // attendee_glow - GREEN
+    //set_mode(attendee_glow, 4);
+    // speaker_glow BLUE
+    //set_mode(speaker_glow, 4);
+    // staff_glow RED
+    //set_mode(staff_glow, 4);   
     
     
     // attendee_glow - GREEN
@@ -319,5 +338,5 @@ void loop()
 
     loop_Patterns();
 
-    //delay(1000);
+    delay(2000);
 }
