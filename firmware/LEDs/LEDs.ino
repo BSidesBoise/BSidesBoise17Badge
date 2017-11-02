@@ -303,7 +303,7 @@ void loop()
     // speaker_glow BLUE
     // staff_glow RED
     for(int i = 0; i < 10; i++){
-        ZE_LEDS.draw(staff_glow, sizeof(staff_glow)/ sizeof(*staff_glow));
+        ZE_LEDS.draw(attendee_glow, sizeof(attendee_glow)/ sizeof(*attendee_glow));
     };   
 
     loop_Patterns();
