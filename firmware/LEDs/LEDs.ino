@@ -253,20 +253,6 @@ int get_random(int min, int max)
 }
 
 void loop_Patterns(){
-     // How about a 'for' loop on an array of moment[]? Then I could get rid of all of the 'for' loops
-     // in this function and just pass each moment into one 'for' loop. I know how to do it with C#
-     // powershell etc. but not this :)
-    
-     /*
-     Moment moments[] = { chase_rgb, roy_g_biv, chase_red, chase_green, chase_blue, chase_white, pulse_bang };    
-     for(int i = 0; i < moments.count; i++){       
-        for(int i = 0; i < get_random(4,10); i++){
-            ZE_LEDS.draw(moments[i], sizeof(moments[i])/ sizeof(*moments[i]));
-        }
-     }*/
-     // the above code would get rid of everything below
-
-     
     // random loop Moment chase_rgb
     for(int i = 0; i < get_random(4,10); i++){
         ZE_LEDS.draw(chase_rgb, sizeof(chase_rgb)/ sizeof(*chase_rgb));
@@ -300,15 +286,6 @@ void loop_Patterns(){
         ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
     };
 }
-
-// Currently not working or being used
-void set_mode(Moment *m, int loop_count){   
-    for(int i = 0; i < loop_count; i++){
-        // Very strange behavior when i do this
-        ZE_LEDS.draw(m, sizeof(m)/ sizeof(*m));
-    };   
-}
-
 void loop()
 {
     //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
@@ -329,12 +306,6 @@ void loop()
         ZE_LEDS.draw(staff_glow, sizeof(staff_glow)/ sizeof(*staff_glow));
     };   
 
-     // This is where you set the mode of the badge doesnt work
-     // attendee_glow - GREEN
-     // speaker_glow - BLUE
-     // staff_glow RED
-     //set_mode(attendee_glow, 4); // see the set_mode() function this doesnt work for me.
-    
     loop_Patterns();
 
     delay(1000);
