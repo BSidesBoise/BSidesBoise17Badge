@@ -63,7 +63,7 @@ Moment staff_glow[] =
                 { 10, 0, 0,    10, 0, 0,     10, 0, 0,      10, 0, 0      }, 15, 100
         }
 };
-// End Memebr Moment(s)
+// End Member Moment(s)
 
 // Single color chase Moment(s)
 Moment chase_red[] =
