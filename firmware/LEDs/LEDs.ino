@@ -13,13 +13,17 @@
 //#define MAXLED 50
 //#define MINLED 1023
 
-#define MAXRED 674
-#define MAXLED 974
+//#define MAXRED 674
+//#define MAXLED 974
+//#define MINLED 0
+
+#define MAXRED 174
+#define MAXLED 287
 #define MINLED 0
 
 // GPIO pin that's not defined elsewhere by Arduino:
-//#define S3 9 //For LOLIN clone due to bug
-#define S3 10 //For legitimate NodeMCU
+#define S3 9 //For LOLIN clone due to bug
+//#define S3 10 //For legitimate NodeMCU
 #define RX 3
 #define TX 1
 
@@ -242,8 +246,67 @@ void setup()
     // Everything's done by the object initializer's.
 }
 
+// Generate random int to determine how many times to loop each Moment
+int get_random(int min, int max)
+{
+    return random(min,max);
+}
+
+void loop_Patterns(){
+    // random loop Moment chase_rgb
+    for(int i = 0; i < get_random(4,10); i++){
+        ZE_LEDS.draw(chase_rgb, sizeof(chase_rgb)/ sizeof(*chase_rgb));
+    }
+
+    // Moment roy_g_biv
+        ZE_LEDS.draw(roy_g_biv, sizeof(roy_g_biv)/ sizeof(*roy_g_biv));
+
+    // random loop Moment chase_red
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_red, sizeof(chase_red)/ sizeof(*chase_red));
+    }    
+
+    // random loop Moment chase_green
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_green, sizeof(chase_green)/ sizeof(*chase_green));
+    }    
+
+    // random loop Moment chase_blue
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_blue, sizeof(chase_blue)/ sizeof(*chase_blue));
+    }
+
+    // random loop Moment chase_white
+    for(int i = 0; i < get_random(0,8); i++){
+        ZE_LEDS.draw(chase_white, sizeof(chase_white)/ sizeof(*chase_white));
+    }
+    
+    // random loop Moment pulse_bang
+    for(int i = 0; i < get_random(1,6); i++){
+        ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
+    };
+}
 void loop()
 {
-    ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
+    //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
+    
+    // criss_cross pattern on power on 
+    // Followed by Member Mode
+    // Followed by loop custom patterns  
+    for(int i = 0; i < 1; i++){
+        ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
+    }
+    ZE_LEDS.draw(turn_off, sizeof(turn_off)/ sizeof(*turn_off));
+    delay(1000);    
+
+    // attendee_glow - GREEN
+    // speaker_glow BLUE
+    // staff_glow RED
+    for(int i = 0; i < 10; i++){
+        ZE_LEDS.draw(attendee_glow, sizeof(attendee_glow)/ sizeof(*attendee_glow));
+    };   
+
+    loop_Patterns();
+
     delay(1000);
 }
