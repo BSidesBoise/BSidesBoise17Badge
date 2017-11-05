@@ -252,6 +252,16 @@ int get_random(int min, int max)
     return random(min,max);
 }
 
+void loop_Unlock_patterns(){
+    // Red/Blue 'cop' pattern #1
+    for(int i = 0; i < get_random(4,10); i++){
+        ZE_LEDS.draw(cop_pattern_1, sizeof(cop_pattern_1)/ sizeof(*cop_pattern_1)); 
+    }
+    // Red/Blue 'cop' pattern #2
+    for(int i = 0; i < get_random(4,10); i++){
+        ZE_LEDS.draw(cop_pattern_2, sizeof(cop_pattern_2)/ sizeof(*cop_pattern_2));
+    };
+}
 void loop_Patterns(){
     // random loop Moment chase_rgb
     for(int i = 0; i < get_random(4,10); i++){
@@ -307,6 +317,7 @@ void loop()
     };   
 
     loop_Patterns();
-
+    // Uncomment the following line for super sekret 'cop' pattern unlock
+    //loop_Unlock_patterns();
     delay(1000);
 }

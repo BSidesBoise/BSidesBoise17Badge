@@ -270,7 +270,82 @@ Moment criss_cross[] =
                 }
         };
 
+Moment cop_pattern_1[] =
+        {
+                {
+                        // All LED's start off, no fade.
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0, 1
+                },
+                {
+                        // Only Red LED's full on, with fast fade.
+                        {100, 0, 0, 100, 0, 0, 100, 0, 0, 100, 0, 0}, 2, 100
+                },
+                {
+                        // All LED's start off, no fade.
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0, 1
+                },
+                {
+                        // Only Blue LED's full on with fast fade.
+                        {0, 0, 100, 0, 0, 100, 0, 0, 100, 0, 0, 100}, 2, 100
+                },
+  
+        };
 
+Moment cop_pattern_2[] =
+        {
+                //phase 1
+                {
+                        // Only  diagonal Red LED's full on, with fast fade.
+                        {0, 0, 0, 100, 0, 0, 100, 0, 0, 0, 0, 0}, 2, 100
+                },
+                {
+                        // Only diagonal Blue LED's full on with slow fade.
+                        {0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 100}, 2, 100
+                },
+                {
+                        // Only diagonal Red LED's full on, with fast fade.
+                        {0, 0, 0, 100, 0, 0, 100, 0, 0, 0, 0, 0}, 2, 100
+                },
+                {
+                        // Only diagonal Blue LED's full on with slow fade.
+                        {0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 100}, 2, 100
+                },
+                // red/blue flash - disabled because it doesn't look very good, but give it a shot?
+//                {
+//                        // All LED's start off, no fade.
+//                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0, 100
+//                },
+//                {
+//                        // All RED, slow fade.
+//                        {100, 0, 0, 100, 0, 0, 100, 0, 0, 100, 0, 0}, 1, 250
+//                },
+//                {
+//                        // All BLUE, slow fade.
+//                        {0, 0, 100, 0, 0, 100, 0, 0, 100, 0, 0, 100}, 1, 250
+//                },
+//                {
+//                        // All LED's start off, no fade.
+//                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0, 100
+//                },
+                // phase 2 - switch sides
+                {
+                        // Only diagonal Red LED's full on, with fast fade.
+                        {100, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0}, 2, 100
+                },
+                {
+                        // Only diagonal Blue LED's full on with slow fade.
+                        {0, 0, 0, 0, 0, 100, 0, 0, 100, 0, 0, 0}, 2, 100
+                },
+                {
+                        // Only diagonal Red LED's full on, with fast fade.
+                        {100, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0}, 2, 100
+                },
+                {
+                        // Only diagonal Blue LED's full on with slow fade.
+                        {0, 0, 0, 0, 0, 100, 0, 0, 100, 0, 0, 0}, 2, 100
+                },
+  
+        };
 
 // Original Test Patterns
 Moment test_rgb[] =
