@@ -107,9 +107,9 @@ The POC is built using the Arduino IDE using the ESP8266 board libraries.
 Docs are located [here.](https://arduino-esp8266.readthedocs.io/en/latest/)
 
 1. Start the Arduino IDE (1.8.4 was used at the time of this writing)
-1. Configure the sketchbook for the poc folder. 
+1. Configure the sketchbook 
     * Select File -> Preferences -> settings tab and change the "Sketchbook 
-    location" to this poc folder.
+    location" to this repository folder.
 1. Add the ESP8266 board
     * Select File -> Preferences -> settings tab and in the "Additional Boards
     Manager URLs" add 
