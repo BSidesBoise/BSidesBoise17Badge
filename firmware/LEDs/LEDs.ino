@@ -4,7 +4,8 @@
  * See design.md for more information on how this firmware works.
  ******************************************************************************/
 #include "patterns.h"
-
+#include "ESP8266WiFi.h"
+#include "SSD1306.h" // alias for `#include "SSD1306Wire.h"`
 /*******************************************************************************
  * Constants used throughout this sketch
  ******************************************************************************/
@@ -50,8 +51,9 @@ public:
                                        m_min_brightness(min_brightness)
     {
         // Set the initial value.
-        pinMode(m_led, OUTPUT);
-        analogWrite(m_led, m_brightness);
+        if (m_led > 0)
+            pinMode(m_led, OUTPUT);
+            analogWrite(m_led, m_brightness);
     }
 
     /***************************************************************************
@@ -86,7 +88,8 @@ public:
         }
 
         // Now set the value
-        analogWrite(m_led, m_brightness);
+        if (m_led > 0)
+            analogWrite(m_led, m_brightness);
         return percent_value;
     }
 
@@ -125,7 +128,7 @@ public:
                     // Top Right Red
                     Led_pin(D2, MINLED, MAXRED, MINLED),
                     // Top Right Green
-                    Led_pin(D3, MINLED, MAXLED, MINLED),
+                    Led_pin(-1, MINLED, MAXLED, MINLED),
                     // Top Right Blue
                     Led_pin(D4, MINLED, MAXLED, MINLED),
                     // Bottom Left Red
@@ -133,7 +136,7 @@ public:
                     // Bottom Left Green
                     Led_pin(D6, MINLED, MAXLED, MINLED),
                     // Bottom Left Blue
-                    Led_pin(D5, MINLED, MAXLED, MINLED),
+                    Led_pin(-1, MINLED, MAXLED, MINLED),
                     // Bottom Right Red
                     Led_pin(D8, MINLED, MAXRED, MINLED),
                     // Bottom Right Green
@@ -241,9 +244,18 @@ private:
 // Our system's LED's
 Leds ZE_LEDS;
 
+// Initialize the OLED display using Wire library
+SSD1306 display(0x3c, D3, D5);
+
 void setup()
 {
-    // Everything's done by the object initializer's.
+    // Initialising the UI will init the display too.
+    display.init();
+    display.clear();
+
+    WiFi.mode(WIFI_STA);
+    WiFi.disconnect();
+    delay(100);
 }
 
 // Generate random int to determine how many times to loop each Moment
@@ -255,7 +267,7 @@ int get_random(int min, int max)
 void loop_Unlock_patterns(){
     // Red/Blue 'cop' pattern #1
     for(int i = 0; i < get_random(4,10); i++){
-        ZE_LEDS.draw(cop_pattern_1, sizeof(cop_pattern_1)/ sizeof(*cop_pattern_1)); 
+        ZE_LEDS.draw(cop_pattern_1, sizeof(cop_pattern_1)/ sizeof(*cop_pattern_1));
     }
     // Red/Blue 'cop' pattern #2
     for(int i = 0; i < get_random(4,10); i++){
@@ -274,12 +286,12 @@ void loop_Patterns(){
     // random loop Moment chase_red
     for(int i = 0; i < get_random(0,8); i++){
         ZE_LEDS.draw(chase_red, sizeof(chase_red)/ sizeof(*chase_red));
-    }    
+    }
 
     // random loop Moment chase_green
     for(int i = 0; i < get_random(0,8); i++){
         ZE_LEDS.draw(chase_green, sizeof(chase_green)/ sizeof(*chase_green));
-    }    
+    }
 
     // random loop Moment chase_blue
     for(int i = 0; i < get_random(0,8); i++){
@@ -290,7 +302,7 @@ void loop_Patterns(){
     for(int i = 0; i < get_random(0,8); i++){
         ZE_LEDS.draw(chase_white, sizeof(chase_white)/ sizeof(*chase_white));
     }
-    
+
     // random loop Moment pulse_bang
     for(int i = 0; i < get_random(1,6); i++){
         ZE_LEDS.draw(pulse_bang, sizeof(pulse_bang)/ sizeof(*pulse_bang));
@@ -298,26 +310,95 @@ void loop_Patterns(){
 }
 void loop()
 {
-    //ZE_LEDS.draw(test_pattern, sizeof(test_pattern)/ sizeof(*test_pattern));
-    
-    // criss_cross pattern on power on 
+    // Grab the wifi networks
+    int n = WiFi.scanNetworks();
+
+    // Setup the screen
+    display.clear();
+    display.setTextAlignment(TEXT_ALIGN_LEFT);
+    display.setFont(ArialMT_Plain_10); //We Get 5 lines of 24 characters at this font size
+
+    // Format the screen output
+    String output = "";
+    if (n == 0)
+    {
+        output = "No networks found";
+    }
+    else
+    {
+        if (n > 5)
+            n = 5;
+
+        for (int i = 0; i < n; ++i)
+        {
+            String ssid = WiFi.SSID(i);
+            String data = " (";
+            data.concat(WiFi.RSSI(i));
+            data.concat(")");
+            if (WiFi.encryptionType(i) == ENC_TYPE_NONE)
+            {
+                data.concat(" *");
+            }
+            else if (WiFi.encryptionType(i) == ENC_TYPE_WEP)
+            {
+                data.concat(" WEP");
+            }
+            else if (WiFi.encryptionType(i) == ENC_TYPE_TKIP)
+            {
+                data.concat(" TKIP");
+            }
+            else if (WiFi.encryptionType(i) == ENC_TYPE_CCMP)
+            {
+                data.concat(" CCMP");
+            }
+            else if (WiFi.encryptionType(i) == ENC_TYPE_AUTO)
+            {
+                data.concat(" AUTO");
+            }
+
+            String line = ssid;
+            line.concat(data);
+            int ssid_size = ssid.length() - 3;
+
+            while (display.getStringWidth(line) > 128)
+            {
+                ssid_size--;
+                ssid.remove(ssid_size);
+                ssid.concat("...");
+                line = ssid;
+                line.concat(data);
+            }
+
+            output.concat(line);
+            output.concat("\n");
+        }
+    }
+
+    display.drawString(0, 0, output);
+    display.display();
+
+    // criss_cross pattern on power on
     // Followed by Member Mode
-    // Followed by loop custom patterns  
-    for(int i = 0; i < 1; i++){
+    // Followed by loop custom patterns
+    for(int i = 0; i < 1; i++)
+    {
         ZE_LEDS.draw(criss_cross, sizeof(criss_cross)/ sizeof(*criss_cross));
     }
     ZE_LEDS.draw(turn_off, sizeof(turn_off)/ sizeof(*turn_off));
-    delay(1000);    
+    delay(1000);
 
     // attendee_glow - GREEN
     // speaker_glow BLUE
     // staff_glow RED
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 10; i++)
+    {
         ZE_LEDS.draw(attendee_glow, sizeof(attendee_glow)/ sizeof(*attendee_glow));
-    };   
+    };
 
     loop_Patterns();
+    delay(1000);
+
     // Uncomment the following line for super sekret 'cop' pattern unlock
-    //loop_Unlock_patterns();
+    loop_Unlock_patterns();
     delay(1000);
 }
