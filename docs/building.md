@@ -115,9 +115,11 @@ Docs are located [here.](https://arduino-esp8266.readthedocs.io/en/latest/)
     Manager URLs" add 
     `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 1. Install the board package
-    * Select File -> Board -> Boards Manager and search for "NodeMCU" and select Install
-1. Select the correct board
-    * Select tools -> Board -> NodeMCU 1.0
+    * Select Tools -> Board -> Boards Manager and search for "NodeMCU" and select Install
+1. Choose comms port
+    * Select Tools -> Port -> Choose the COM port corresponding to your USB cable.
+1. Oepn an .ino file
+    * Select File -> Open -> Choose an .ino file within this repo.
 1. Upload the firmware
     * Open the [firmware](../firmware/LEDs/LEDs.ino) file using the Arduino IDE
     * Select the "Upload" button to compile and upload the firmware to the 
