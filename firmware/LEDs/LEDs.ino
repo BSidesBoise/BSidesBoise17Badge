@@ -22,8 +22,8 @@
 #define MINLED 0
 
 // GPIO pin that's not defined elsewhere by Arduino:
-#define S3 9 //For LOLIN clone due to bug
-//#define S3 10 //For legitimate NodeMCU
+//#define S3 9 //For LOLIN clone due to bug
+#define S3 10 //For legitimate NodeMCU
 #define RX 3
 #define TX 1
 
